@@ -3,7 +3,7 @@ import numpy as np
 from dotenv import load_dotenv
 import google.generativeai as genai
 from chromadb import PersistentClient
-from rank_bm25 import BM25Okapi # 👈 키워드 검색(BM25) 라이브러리
+from rank_bm25 import BM25Okapi # 
 
 # ============================================
 # 1. 환경 설정
@@ -34,7 +34,7 @@ def get_query_embedding(query: str):
         )
         return result["embedding"]
     except Exception as e:
-        print(f"❌ 임베딩 오류: {e}")
+        print(f" 임베딩 오류: {e}")
         return None
 
 def simple_tokenize(text):
@@ -81,8 +81,8 @@ def hybrid_search(query, collection, k=10):
 
     # ChromaDB에서 전체 문서와의 거리를 계산하기 어려우므로,
     # 여기서는 검색된 Top-K만 쓰는 게 아니라, 
-    # BM25가 찾은 문서들에 대해 벡터 유사도를 검증하거나 결합하는 방식을 씁니다.
-    # 하지만 구현의 편의를 위해 Chroma에서 넓게(Top-100) 가져와서 섞겠습니다.
+    # BM25가 찾은 문서들에 대해 벡터 유사도를 검증하거나 결합하는 방식
+    # 하지만 구현의 편의를 위해 Chroma에서 넓게(Top-100)
     
     vector_results = collection.query(
         query_embeddings=[query_embedding],
